@@ -77,6 +77,84 @@ np.savez(fileName, train = train, train_labels = train_labels)
 
 Pay special attention to the grammar when splitting the picture.
 
+#### Detecting the Numbers
+
+At first, it is abstract for us to think how can we detect and extract the number out of the paper. But after knowing how and why, we will find it quite simple.
+
+First we know that the white part of a gray scale picture is actually determined by the gray level of pixels. But how might we know where is the number? We have to grasp the information of the gray level. But the key problem is that the range of the gray level is from 0 to 255. We can't simply tell which pixel belongs to the number, for the values of gray level vary from each to each. So we have to use a process to 'force' that the gray level of each pixel can be only either 0 or 255. To realize this, we have to use a threshold to decide whether the gray level of a pixel is going to be changed into 0 or 255. 
+
+Through this process, we change the gray scale picture into a ***binary*** one.
+
+OK. Now we have a matrix, whose elements can only be 0 or 255. What to do next is quite clear. We have to scan the matrix from left to the right, detecting where the 0 changes into 255 (type 1) and where the 255 change into 0 (type 2). Not all changes of this kind should be recorded. When the change of type 1 is detected, what we seek for should be change of type 2. The area between the column of the index recorded in pair is in fact the number! Record the index of the column required, and this will help us split the matrix vertically. As for the rows, we do the similar things like that, so as to correctly split the matrix horizontally. First split the whole matrix vertically, then split every unit horizontally, and we will get the number matrix we want!
+
+Remark that to further increase the accuracy, we make some adjustment to increase the width of  the black margin. All these functions are written in the file ***'my_function.py'*** .
+
+````python
+# Note that we make some adjustment in the code so as to increase the margin
+def image_split_column(img:np.ndarray)->list:
+    # find out the number of columns in the original image
+    # create a list to record the number of elements with a value of 255 in each column
+    column = img.shape[1]
+    columnHist = np.zeros(column)    
+    # initialize the variables
+    flag = 0
+    startList = []
+    endList = []   
+    ### write your codes here ###
+    #############################
+    # step1:
+    # count the number of elements with a value of 255 in each column and record it in columnHist
+    # record the location where the the number of 255 changes in startList and endList
+    # record the status with flag
+    for i in (range(column-1)):
+        if 255 not in img[:,i]:
+            if 255 in img[:,i+1]:
+                startList.append(i)
+        if 255 in img[:,i]:
+            if 255 not in img[:,i+1]:
+                endList.append(i+1)               
+    # step 2:
+    # following the startList and the endList, split the digits area from the original image.
+    # there maybe several areas. recorder the areas in imgList and return imgList.
+    imgList = [img[:,startList[i]-15:endList[i]+15] for i in range(len(startList))]
+
+    ret = imgList
+    return ret
+
+
+
+def image_split_row(img:np.ndarray)->list:
+    # find out the number of rows in the original image
+    # create a list to record the number of elements with a value of 255 in each row
+    row = img.shape[0]
+    rowHist = np.zeros(row)    
+    # initialize the variables
+    flag = 0
+    startList = []
+    endList = []         
+    ### write your codes here ###
+    #############################
+    # step1:
+    # count the number of elements with a value of 255 in each row and record it in rowHist
+    # record the location where the the number of 255 changes in startList and endList
+    # record the status with flag
+    for i in (range(row-1)):
+        if 255 not in img[i,:]:
+            if 255 in img[i+1,:]:
+                startList.append(i)
+        if 255 in img[i,:]:
+            if 255 not in img[i+1,:]:
+                endList.append(i+1)      
+    # step 2:
+    # following the startList and the endList, split the digits area from the original image.
+    # there maybe several areas. recorder the areas in imgList and return imgList.    
+    imgList = [img[startList[i]-15:endList[i]+15,:] for i in range(len(startList))]     
+    ret = imgList
+    return ret
+````
+
+
+
 ### Presentation & Result of the Project
 
 ### Problems Encountered and Solutions
