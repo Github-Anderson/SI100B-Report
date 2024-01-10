@@ -1,4 +1,4 @@
-# SI100B-Report
+# 								SI100B-Report
 
 ## Team members and Division of Work
 
@@ -9,8 +9,6 @@
 - Yixuan Chen	   (陈逸轩)
 
 ### Division of Work
-
-
 
 ## Text
 
@@ -25,8 +23,6 @@ First of all, the most important thing is to understand how to operate the Raspb
 To realize this, we have to assign an IP to the usb interface in order to connect the Raspberry with the computer, since that this operation puts two devices into one LAN. After that, all we have to do is to open the VNC app and initiate the connection.
 
 Through these operations, we can manipulate the Raspberry Pi through the remote desktop on our own computer. 
-
-<img src="img/VNC.png" style="zoom:20%;" />
 
 #### Part 2: The Establishment of the Training Set
 
@@ -91,8 +87,6 @@ First we know that the white part of a gray scale picture is actually determined
 
 Through this process, we change the gray scale picture into a ***binary*** one.
 
-<img src="img/binary.png" style="zoom:15%;" />
-
 OK. Now we have a matrix, whose elements can only be 0 or 255. What to do next is quite clear. We have to scan the matrix from left to the right, detecting where the 0 changes into 255 (type 1) and where the 255 change into 0 (type 2). Not all changes of this kind should be recorded. When the change of type 1 is detected, what we seek for should be change of type 2. The area between the column of the index recorded in pair is in fact the number! Record the index of the column required, and this will help us split the matrix vertically. As for the rows, we do the similar things like that, so as to correctly split the matrix horizontally. First split the whole matrix vertically, then split every unit horizontally, and we will get the number matrix we want!
 
 Remark that to further increase the accuracy, we make some adjustment to increase the width of  the black margin. All these functions are written in the file ***'my_function.py'*** .
@@ -107,7 +101,9 @@ def image_split_column(img:np.ndarray)->list:
     # initialize the variables
     flag = 0
     startList = []
-    endList = []
+    endList = []   
+    ### write your codes here ###
+    #############################
     # step1:
     # count the number of elements with a value of 255 in each column and record it in columnHist
     # record the location where the the number of 255 changes in startList and endList
@@ -127,6 +123,8 @@ def image_split_column(img:np.ndarray)->list:
     ret = imgList
     return ret
 
+
+
 def image_split_row(img:np.ndarray)->list:
     # find out the number of rows in the original image
     # create a list to record the number of elements with a value of 255 in each row
@@ -135,7 +133,9 @@ def image_split_row(img:np.ndarray)->list:
     # initialize the variables
     flag = 0
     startList = []
-    endList = []
+    endList = []         
+    ### write your codes here ###
+    #############################
     # step1:
     # count the number of elements with a value of 255 in each row and record it in rowHist
     # record the location where the the number of 255 changes in startList and endList
@@ -173,7 +173,23 @@ for p in range(len(rows)):
 
 #### Part 5:  Improving Accuracy
 
-> Please refer to [Problem 1](#problem-1-recognition-rate)
+This is a harsh question: How can we improve the accuracy?  In the class, teacher gave us three hints: ***the segmentation range, threshold, and the parameter value of 'k' used in the KNN algorithm***.
+
+ As for the segmentation, let's take a look back at the training data set. It's not hard to find that the samples have a black margin, which means that it is not going to be a single extraction. Yes, we have to add some black margin for the number extracted manually. Here we reach the goal through defining a ***function 'imgSqua()'***. The code is presented below.
+
+````python 
+# add black margin and change the matrix into a square one.
+def imgSqua(img):
+    (row,col) = img.shape
+    m = max(row,col)
+    new_matrix = np.zeros((m,m), dtype = np.uint8)
+    row_start = (m-row)//2
+    col_start = (m-col)//2
+    new_matrix[row_start:row_start+row, col_start:col_start+col] = img
+    return new_matrix
+````
+
+As for the threshold, there 
 
 #### Part 6: Building the Circuit
 
@@ -189,9 +205,63 @@ After knowing what to do with the GPIO ports, we also have to learn more knowled
 
 ![](img/camera.png)
 
-As for the digital tube, it's more complex in comparison. After knowing the control relationship between the LED and the port, we have to establish combinations of LEDs to represent: 
+As for the digital tube, it's more complex in comparison. After knowing the control relationship between the LED and the port, we have to establish combinations of LEDs to represent different numbers. The relationship will be presented in the code of ***'my_function.py '***and the circuit structure of the digital tube will be shown in the following picture. 
 
 <img src="img/digital tube.png" style="zoom:60%;" />
+
+````python
+def led_display(numList:list)->None:
+    ### write your codes here ###
+    #############################
+    # step 1:
+    # Clarify the relationship between led pins and GPIO pins
+    # Set the GPIO pins to GPIO.OUT mode and give them the right output
+    GPIO.setmode(GPIO.BOARD)
+    out_para = GPIO.HIGH   
+    # step 2:
+    # Clarify the led composition of each number
+    a = 31
+    b = 29
+    c = 16
+    d = 13
+    e = 12
+    f = 35
+    g = 37
+    dp = 18
+    seg = [12,13,16,18,29,31,35,37]
+    for segment in seg:
+        GPIO.setup(segment,GPIO.OUT)
+        GPIO.output(segment, True)
+    num0 = [a,b,c,d,e,f]
+    num1 = [b,c]
+    num2 = [a,b,g,e,d]
+    num3 = [a,b,g,c,d]
+    num4 = [f,g,b,c]
+    num5 = [a,f,g,c,d]
+    num6 = [a,f,g,c,d,e]
+    num7 = [a,b,c]
+    num8 = [a,b,c,d,e,f,g]
+    num9 = [a,b,c,d,f,g]
+    n_list = [num0,num1,num2,num3,num4,num5,num6,num7,num8,num9]     
+    # step 3:
+    # Display the numbers in the list one by one
+    # Display every number for 1 second
+    # Wait two seconds when displaying different lines 
+    for ele in numList:
+        for dig in n_list[ele]:
+            GPIO.output(dig, GPIO.LOW)
+        time.sleep(1)
+        for dig in n_list[ele]:
+            GPIO.output(dig, GPIO.HIGH)
+        time.sleep(1)
+    # To present mutiple results, here wait for extra two seconds.
+    time.sleep(2)
+    GPIO.cleanup() 
+    ret = None
+    return ret
+````
+
+
 
 ### Presentation & Result of the Project
 
@@ -203,7 +273,7 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
 
 - **Description:** The initial challenge we faced was improving the recognition rate. During the first few attempts, we observed a low recognition rate of approximately **30~40%**, which fell far short of our target of around 90%.
 
-- **Solution:** Notice that the numbers in given images are too thin to be reshaped, it leaves us to process them to match the train set. We used several methods, including cropping to retain suitable margins, adjusting binary thresholds, and applying blur filters, which are shown in the following code:
+- **Solution:** We used several methods, including cropping to retain suitable margins, adjusting binary thresholds, and applying blur filters, which are shown in the following code:
 
   ```python
   # Applying blur filters
@@ -211,9 +281,9 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
   _,imgResize = cv2.threshold(imgResize,127,255,cv2.THRESH_BINARY)
   ```
 
-  This process can be shown as follows:
+  This piece of code is used to make the numbers in the image bolder for more accurate recognition. 
   
-  <img src="img/Blur.png" style="zoom:15%;" />
+  ![](img/Blur.png "The process of blur filters")
 
 #### Problem 2: Camera initialization
 
@@ -227,8 +297,4 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
 
 ### Thoughts and Inspirations
 
-
-
-### Credits
-
-Repository on [Github](https://github.com/Github-Anderson/SI100B-Report)
+###### 
