@@ -79,7 +79,7 @@ np.savez(fileName, train = train, train_labels = train_labels)
 
 Pay special attention to the grammar when splitting the picture.
 
-#### Detecting the Numbers
+#### Part 3: Detecting the Numbers
 
 At first, it is abstract for us to think how can we detect and extract the number out of the paper. But after knowing how and why, we will find it quite simple.
 
@@ -155,11 +155,43 @@ def image_split_row(img:np.ndarray)->list:
     return ret
 ````
 
+#### Part 4: Detecting Multiple Line 
 
+We have known the procedure to secure the numbers in a single line. But what about the multiple lines scenario? Actually it is quite easy. We simply split the large matrix into two parts, each containing a single line. After that, we use the function to process each line.
+
+````python
+rows = image_split_row(imgBin)
+for p in range(len(rows)):
+     imgCol = image_split_column(rows[p])
+    print(f'The followings are the {p+1}th row')
+    imshow(rows[p])
+    imgMonos = []
+    for col in range(0,len(imgCol)):
+        imgMono = image_split_row(imgCol[col])
+# The following code will be shown later in the report.  
+````
+
+#### Part 5:  Improving Accuracy
+
+#### Part 6: Building the Circuit
+
+First, we have to understand how GPIO works in Raspberry Pi. We can set the GPIO port in the python code. We can choose the mode of IN or OUT. After setting the GPIO port, we are free to set the GPIO port in ***high level voltage or low level voltage***, enabling the electric current to flow through the circuit. 
+
+To set and manipulate the GPIO ports through python, we have to ***import the PRI.GPIO library*** and choose a ***set mode***. The set mode you choose determine the coding of the ports you are going to use. Denote that the '5V' port is prohibited, for the probability for damaging the whole Raspberry Pi board. 
+
+The picture of more information related to the GPIO is presented below. 
+
+![](D:\HuaweiMoveData\Users\xiong\Desktop\project report\SI100B-Report\img\GPIO.png)
+
+After knowing what to do with the GPIO ports, we also have to learn more knowledge of the LED digital tube and the switch.  As for the switch, we have to know the inner structure of this device. The code of operation and the inner circuit is illustrated below.
+
+![](D:\HuaweiMoveData\Users\xiong\Desktop\project report\SI100B-Report\img\camera.png)
+
+As for the digital tube, it's more complex in comparison. After knowing the control relationship between the LED and the port, we have to establish combinations of LEDs to represent 
+
+![](D:\HuaweiMoveData\Users\xiong\Desktop\project report\SI100B-Report\img\digital tube.png)
 
 ### Presentation & Result of the Project
-
-### 
 
 ### Problems Encountered and Solutions
 
