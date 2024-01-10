@@ -5,8 +5,20 @@
 ### Team members
 
 - Zhangzhi Xiong  (熊章智)
+
+Coding; Adjusting Parameters (Threshold and Model Related); Building Circuit
+
 - Tianni Yang        (杨天倪)
+
+Adjusting Parameters (Accuracy Related); Buiding Circuit
+
 - Yixuan Chen	   (陈逸轩)
+
+Coding; Experimenting
+
+- Joint Work
+
+Debugging; Recording ; Writing Report
 
 ### Division of Work
 
@@ -564,33 +576,33 @@ led_display(show_list)
 
 The pictures of the circuit are presented below:
 
-![](img/IMG_4266.JPG)
+<img src="img/IMG_4266.JPG" style="zoom:33%;" />
 
-![](img/IMG_4267.JPG)
+<img src="img/IMG_4267.JPG" style="zoom:33%;" />
 
-![](img/IMG_4265.JPG)
+<img src="img/IMG_4265.JPG" style="zoom: 33%;" />
 
 The scene of demonstration:
 
-![](img/IMG_4263.JPG)
+<img src="img/IMG_4263.JPG" style="zoom: 25%;" />
 
 Finally, we completed our mission successfully, with the ***accuracy of 80%***, i.e, eight correct out of ten. Though during the demonstration we have to make one adjustment to the ***threshold*** due to the ***noise white dot***, in a whole, the demonstration was a total success. The accuracy was 80% and the digital tube presented the number correctly. We will show more detail in the following pictures:
 
 The picture taken is shown below:
 
-![](img/input.png) 
+<img src="img/input.png" style="zoom:33%;" /> 
 
 The gray scale image is shown below:
 
-![](img/output1.png)
+<img src="img/output1.png" style="zoom: 33%;" />
 
 The binary image is shown below:
 
-![](img/output2.png)
+<img src="img/output2.png" style="zoom: 33%;" />
 
 The recognition result is shown below:
 
-![](img/output3.png)
+<img src="img/output3.png" style="zoom: 33%;" />
 
 So far, we have finished the whole project. Well Done!
 
@@ -636,10 +648,16 @@ What's more, we have a deeper understanding of the Machine Learning (I don't kno
 
 At last, we learn how to ***better cooperate***. Team work is rather important. The power of individual is limited, but the power of a team will be infinite if the team is organized in order. Besides, everyone's advantages and shortcomings are different, which makes it possible to the team members to learn from other's strong points to offset one's weakness, so as to further form a more ***cohesive and resilient team***. In the future, team work is inevitable in the field of scientific research, the skill to better collaborate with other teammates or organize the team in a good order will be rather beneficial. This unique experience won't be forgotten by each member of our team! 
 
+Finally, always try to learn new things, and learn to learn new things fast and clear. During the project, to fix the problem encountered, we have to learn lots of new knowledge and apply these knowledge to practical use. For example, the structure and working principle of the Raspberry Pi is  highly related to Computer System and Structure, the circuit is related to the knowledge and the usage of the bread board and the electrical devices, even this pdf document is edited in Markdown which means that we have to learn the grammar of the markdown fast. But the joy of exploration is exactly the process of meeting new stuff and learn them. Thus, it is quite a serious point that whether we can grasp the essence of the knowledge, make some connections and put them into application or not. 
+
 In a nut shell, we have learned so much from the project, haven't we? Sum them up and absorb the wisdom, and we will gain more experience and make more steady steps on the scientific road we have embarked on. 
 
 ### Credits
 
+Hereby, we would like to express our sincere gratitude to the teacher and the TAs. Without the guidance of teacher and TAs, it is impossible for us to complete the project. We really learn lots of stuff from the course, and we are grateful for the help provided by the teacher and TAs. 
 
+Thank you for your reading! 
 
-Repository on [Github](https://github.com/Github-Anderson/SI100B-Report)
+Best regards,
+
+ZhangZhi Xiong, TianNi Yang, YiXuan Chen
