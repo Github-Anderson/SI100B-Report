@@ -32,5 +32,17 @@ To realize this, we have to assign an IP to the usb interface in order to connec
 
 ### Problems Encountered and Solutions
 
+#### Problem 01: Recognition rate
+
+The first problem we've encountered is how to raise the recognition rate. In the first few times, we've found the recognition rate is too low, around **30~40%**, since the expectation is about 90%. 
+
+#### Problem 02: Camera initialization
+
+When attempting to initialize the newly installed camera on the Raspberry Pi, it consistently presents an ***'Failed to enable connection: Out of resources'*** error. Despite trying several solutions, the issue persists.
+
+#### Problem 03: Camera preview
+
+After writing the `camera.start_preview()` code, the Raspberry Pi, which should have initiated the camera preview, remained unresponsive without any error messages. Nevertheless, it executed the subsequent code without issues.
+
 ### Thoughts and Inspirations
 
