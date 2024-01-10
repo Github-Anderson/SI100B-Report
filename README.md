@@ -285,6 +285,8 @@ def led_display(numList:list)->None:
   
   ![](img/Blur.png "The process of blur filters")
 
+
+
 #### Problem 2: Camera initialization
 
 - **Description:** When attempting to initialize the newly installed camera on the Raspberry Pi, it consistently presents an ***'Failed to enable connection: Out of resources'*** error. Despite trying several solutions, the issue persists.
