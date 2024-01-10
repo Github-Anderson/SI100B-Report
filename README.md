@@ -10,6 +10,8 @@
 
 ### Division of Work
 
+
+
 ## Text
 
 ### Main Content of the Project
@@ -23,6 +25,8 @@ First of all, the most important thing is to understand how to operate the Raspb
 To realize this, we have to assign an IP to the usb interface in order to connect the Raspberry with the computer, since that this operation puts two devices into one LAN. After that, all we have to do is to open the VNC app and initiate the connection.
 
 Through these operations, we can manipulate the Raspberry Pi through the remote desktop on our own computer. 
+
+<img src="img/VNC.png" title="VNC" style="zoom:30%;" />
 
 #### Part 2: The Establishment of the Training Set
 
@@ -87,6 +91,8 @@ First we know that the white part of a gray scale picture is actually determined
 
 Through this process, we change the gray scale picture into a ***binary*** one.
 
+<img src="img/binary.png" style="zoom:15%;" />
+
 OK. Now we have a matrix, whose elements can only be 0 or 255. What to do next is quite clear. We have to scan the matrix from left to the right, detecting where the 0 changes into 255 (type 1) and where the 255 change into 0 (type 2). Not all changes of this kind should be recorded. When the change of type 1 is detected, what we seek for should be change of type 2. The area between the column of the index recorded in pair is in fact the number! Record the index of the column required, and this will help us split the matrix vertically. As for the rows, we do the similar things like that, so as to correctly split the matrix horizontally. First split the whole matrix vertically, then split every unit horizontally, and we will get the number matrix we want!
 
 Remark that to further increase the accuracy, we make some adjustment to increase the width of  the black margin. All these functions are written in the file ***'my_function.py'*** .
@@ -101,9 +107,7 @@ def image_split_column(img:np.ndarray)->list:
     # initialize the variables
     flag = 0
     startList = []
-    endList = []   
-    ### write your codes here ###
-    #############################
+    endList = []
     # step1:
     # count the number of elements with a value of 255 in each column and record it in columnHist
     # record the location where the the number of 255 changes in startList and endList
@@ -123,8 +127,6 @@ def image_split_column(img:np.ndarray)->list:
     ret = imgList
     return ret
 
-
-
 def image_split_row(img:np.ndarray)->list:
     # find out the number of rows in the original image
     # create a list to record the number of elements with a value of 255 in each row
@@ -133,9 +135,7 @@ def image_split_row(img:np.ndarray)->list:
     # initialize the variables
     flag = 0
     startList = []
-    endList = []         
-    ### write your codes here ###
-    #############################
+    endList = []
     # step1:
     # count the number of elements with a value of 255 in each row and record it in rowHist
     # record the location where the the number of 255 changes in startList and endList
@@ -173,6 +173,8 @@ for p in range(len(rows)):
 
 #### Part 5:  Improving Accuracy
 
+> Please refer to [Problem 1](#problem-1-recognition-rate)
+
 #### Part 6: Building the Circuit
 
 First, we have to understand how GPIO works in Raspberry Pi. We can set the GPIO port in the python code. We can choose the mode of IN or OUT. After setting the GPIO port, we are free to set the GPIO port in ***high level voltage or low level voltage***, enabling the electric current to flow through the circuit. 
@@ -181,15 +183,15 @@ To set and manipulate the GPIO ports through python, we have to ***import the PR
 
 The picture of more information related to the GPIO is presented below. 
 
-![](img/GPIO.png)
+![](img/GPIO.png "Raspberry Pi")
 
 After knowing what to do with the GPIO ports, we also have to learn more knowledge of the LED digital tube and the switch.  As for the switch, we have to know the inner structure of this device. The code of operation and the inner circuit is illustrated below.
 
-![](img/camera.png)
+![](img/camera.png "Camera")
 
 As for the digital tube, it's more complex in comparison. After knowing the control relationship between the LED and the port, we have to establish combinations of LEDs to represent: 
 
-<img src="img/digital tube.png" style="zoom:60%;" />
+<img src="img/digital tube.png" title="LED" style="zoom:60%;" />
 
 ### Presentation & Result of the Project
 
@@ -201,7 +203,7 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
 
 - **Description:** The initial challenge we faced was improving the recognition rate. During the first few attempts, we observed a low recognition rate of approximately **30~40%**, which fell far short of our target of around 90%.
 
-- **Solution:** We used several methods, including cropping to retain suitable margins, adjusting binary thresholds, and applying blur filters, which are shown in the following code:
+- **Solution:** Notice that the numbers in given images are too thin to be reshaped, it leaves us to process them to match the train set. We used several methods, including cropping to retain suitable margins, adjusting binary thresholds, and applying blur filters, which are shown in the following code:
 
   ```python
   # Applying blur filters
@@ -209,9 +211,9 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
   _,imgResize = cv2.threshold(imgResize,127,255,cv2.THRESH_BINARY)
   ```
 
-  This piece of code is used to make the numbers in the image bolder for more accurate recognition. 
+  This process can be shown as follows:
   
-  ![](img/Blur.png "The process of blur filters")
+  <img src="img/Blur.png" title="The process of blur filters" style="zoom:20%;" />
 
 #### Problem 2: Camera initialization
 
@@ -225,4 +227,8 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
 
 ### Thoughts and Inspirations
 
-###### 
+
+
+### Credits
+
+Repository on [Github](https://github.com/Github-Anderson/SI100B-Report)
