@@ -1,18 +1,24 @@
 # SI100B-Report
 
-## 小组成员及分工
+## Team members and Division of Work
 
+### Team members
 
+ZhangZhi Xiong  (熊章智)
 
+TianNi Yang        (杨天倪)
 
+YiXuan Chen	   (陈逸轩)
 
-## 正文内容
+### Division of Work
 
-### Project主要内容
+## Text
 
-### Project结果展示
+### Main Content of the Project
 
-### 遇到的问题及解决方案
+### Presentation & Result of the Project
 
-### 感想
+### Problems Encountered and Solutions
+
+### Thoughts and Inspirations
 
