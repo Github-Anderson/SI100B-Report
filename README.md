@@ -4,12 +4,9 @@
 
 ### Team members
 
-> ZhangZhi Xiong  (熊章智)
->
-> TianNi Yang        (杨天倪)
->
-> YiXuan Chen	   (陈逸轩)
->
+- Zhangzhi Xiong  (熊章智)
+- Tianni Yang        (杨天倪)
+- Yixuan Chen	   (陈逸轩)
 
 ### Division of Work
 
