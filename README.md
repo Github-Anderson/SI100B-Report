@@ -578,7 +578,7 @@ Finally, we completed our mission successfully, with the ***accuracy of 80%***, 
 
 The picture taken is shown below:
 
-![](img/input.png) 
+![](img/input.png)
 
 The gray scale image is shown below:
 
@@ -590,7 +590,7 @@ The binary image is shown below:
 
 The recognition result is shown below:
 
-![](img/output3.png)
+<img src="img/output3.png" style="zoom: 50%;" />
 
 So far, we have finished the whole project. Well Done!
 
