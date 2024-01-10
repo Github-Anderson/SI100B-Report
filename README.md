@@ -159,7 +159,7 @@ def image_split_row(img:np.ndarray)->list:
 
 ### Presentation & Result of the Project
 
-### 
+
 
 ### Problems Encountered and Solutions
 
