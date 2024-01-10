@@ -81,6 +81,8 @@ Pay special attention to the grammar when splitting the picture.
 
 ### Presentation & Result of the Project
 
+### 
+
 ### Problems Encountered and Solutions
 
 #### Problem 01: Recognition rate
@@ -89,11 +91,13 @@ Pay special attention to the grammar when splitting the picture.
 
 - **Solution:** We used several methods, including cropping to retain suitable margins, adjusting binary thresholds, and applying blur filters, which are shown in the following code:
 
-```python
-# Applying blur filters
-imgResize = cv2.blur(imgResize, (2,2))
-_,imgResize = cv2.threshold(imgResize,127,255,cv2.THRESH_BINARY)
-```
+  ```python
+  # Applying blur filters
+  imgResize = cv2.blur(imgResize, (2,2))
+  _,imgResize = cv2.threshold(imgResize,127,255,cv2.THRESH_BINARY)
+  ```
+
+  This piece of code is used to make the numbers in the image bolder for more accurate recognition. 
 
 #### Problem 02: Camera initialization
 
