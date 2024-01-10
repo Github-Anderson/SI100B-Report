@@ -273,9 +273,298 @@ def led_display(numList:list)->None:
     return ret
 ````
 
+Besides these two devices, we add an additional LED in combination with the switch and the camera to inform us the moment we take photos. The code ***'take_photo()'*** of taking photos, including the function of switch and LED illustration, is presented below:
 
+Note that the returned result of this function is the path where the picture is saved. 
+
+````python
+def take_photo()->str:
+    ### write your codes here ###
+    #############################
+    # step 1: 
+    #set a GPIO as an input channel for detecting
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(7,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(40,GPIO.OUT)                
+    # step 2: 
+    # create the camera obj and wait for a button to take a photo
+    # recorder the saving path
+    # clear the camera
+    with PiCamera() as camera:             
+        camera.start_preview()
+        while True:              
+            if GPIO.input(7) == 1:
+                GPIO.output(40,GPIO.HIGH)
+                sleep(1)
+                GPIO.output(40,GPIO.LOW)                      
+                sleep(1)
+                camera.stop_preview()
+                filename = 'photo.jpg'
+                camera.capture(PRJ_PATH + filename)                   
+                GPIO.cleanup()
+                camera.close()
+                break
+    # step3:
+    # return the saving path
+    ret = PRJ_PATH + filename
+    return ret
+````
 
 ### Presentation & Result of the Project
+
+Finally, we have all the code and the circuit. Time for demonstration!
+
+We will present the complete code and the circuit built for our project.
+
+The ***my_function.py*** is presented below: 
+
+````python
+# General purpose
+import os
+import numpy as np
+from time import sleep
+import time
+# GPIO related
+import RPi.GPIO as GPIO
+# camera related
+from picamera import PiCamera, Color
+# GPIO mode: GPIO.BOARD, GPIO.BCM
+GPIO.setmode(GPIO.BOARD)
+mode = GPIO.getmode()
+# Close GPIO warning
+GPIO.setwarnings(False)
+# get the project path
+PRJ_PATH = os.getcwd()
+def image_split_column(img:np.ndarray)->list:   
+    # find out the number of columns in the original image
+    # create a list to record the number of elements with a value of 255 in each column
+    column = img.shape[1]
+    columnHist = np.zeros(column)    
+    # initialize the variables
+    flag = 0
+    startList = []
+    endList = []        
+    ### write your codes here ###
+    #############################
+    # step1:
+    # count the number of elements with a value of 255 in each column and record it in columnHist
+    # record the location where the the number of 255 changes in startList and endList
+    # record the status with flag
+    for i in (range(column-1)):
+        if 255 not in img[:,i]:
+            if 255 in img[:,i+1]:
+                startList.append(i)
+        if 255 in img[:,i]:
+            if 255 not in img[:,i+1]:
+                endList.append(i+1)                       
+    # step 2:
+    # following the startList and the endList, split the digits area from the original image.
+    # there maybe several areas. recorder the areas in imgList and return imgList.
+    imgList = [img[:,startList[i]-15:endList[i]+15] for i in range(len(startList))]                            
+    ret = imgList
+    return ret
+def image_split_row(img:np.ndarray)->list:    
+    # find out the number of rows in the original image
+    # create a list to record the number of elements with a value of 255 in each row
+    row = img.shape[0]
+    rowHist = np.zeros(row)    
+    # initialize the variables
+    flag = 0
+    startList = []
+    endList = []         
+    ### write your codes here ###
+    #############################
+    # step1:
+    # count the number of elements with a value of 255 in each row and record it in rowHist
+    # record the location where the the number of 255 changes in startList and endList
+    # record the status with flag
+    for i in (range(row-1)):
+        if 255 not in img[i,:]:
+            if 255 in img[i+1,:]:
+                startList.append(i)
+        if 255 in img[i,:]:
+            if 255 not in img[i+1,:]:
+                endList.append(i+1)      
+    # step 2:
+    # following the startList and the endList, split the digits area from the original image.
+    # there maybe several areas. recorder the areas in imgList and return imgList.    
+    imgList = [img[startList[i]-15:endList[i]+15,:] for i in range(len(startList))]      
+    ret = imgList
+    return ret
+def led_display(numList:list)->None:
+    ### write your codes here ###
+    #############################
+    # step 1:
+    # Clarify the relationship between led pins and GPIO pins
+    # Set the GPIO pins to GPIO.OUT mode and give them the right output   
+    GPIO.setmode(GPIO.BOARD)
+    out_para = GPIO.HIGH
+    # step 2:
+    # Clarify the led composition of each number
+    a = 31
+    b = 29
+    c = 16
+    d = 13
+    e = 12
+    f = 35
+    g = 37
+    dp = 18
+    seg = [12,13,16,18,29,31,35,37]
+    for segment in seg:
+        GPIO.setup(segment,GPIO.OUT)
+        GPIO.output(segment, True)
+    num0 = [a,b,c,d,e,f]
+    num1 = [b,c]
+    num2 = [a,b,g,e,d]
+    num3 = [a,b,g,c,d]
+    num4 = [f,g,b,c]
+    num5 = [a,f,g,c,d]
+    num6 = [a,f,g,c,d,e]
+    num7 = [a,b,c]
+    num8 = [a,b,c,d,e,f,g]
+    num9 = [a,b,c,d,f,g]
+    n_list = [num0,num1,num2,num3,num4,num5,num6,num7,num8,num9]      
+    # step 3:
+    # Display the numbers in the list one by one
+    # Display every number for 1 second
+    # Wait two seconds when displaying different lines    
+    for ele in numList:
+        for dig in n_list[ele]:
+            GPIO.output(dig, GPIO.LOW)
+        time.sleep(1)
+        for dig in n_list[ele]:
+            GPIO.output(dig, GPIO.HIGH)
+        time.sleep(1)    
+    GPIO.cleanup() 
+    ret = None
+    return ret
+def take_photo()->str:
+    ### write your codes here ###
+    #############################
+    # step 1: 
+    #set a GPIO as an input channel for detecting
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(7,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(40,GPIO.OUT)
+    # step 2: 
+    # create the camera obj and wait for a button to take a photo
+    # recorder the saving path
+    # clear the camera
+    with PiCamera() as camera:             
+        camera.start_preview()
+        while True:              
+            if GPIO.input(7) == 1:
+                GPIO.output(40,GPIO.HIGH)
+                sleep(1)
+                GPIO.output(40,GPIO.LOW)                                    
+                sleep(1)
+                camera.stop_preview()
+                filename = 'photo.jpg'
+                camera.capture(PRJ_PATH + filename)                   
+                GPIO.cleanup()
+                camera.close()
+                break
+    # step3:
+    # return the saving path
+    ret = PRJ_PATH + filename
+    return ret
+````
+
+The ***ultimate_demonstration_code.ipynb*** is presented below:
+
+````python
+%load_ext autoreload
+%autoreload 1
+# number detected related
+import cv2
+import os
+import numpy as np
+import math
+from lib import imshow
+import random
+
+# get the project path
+PRJ_PATH = os.getcwd()
+# OPENCV_data.npz
+TRAIN_DATA_NAME = "OPENCV_data_Beta.npz"
+
+%aimport my_function
+from my_function import image_split_row, image_split_column, led_display, take_photo
+# load the knn training data
+# load the knn training data
+with np.load(PRJ_PATH + '/TrainingData/' + TRAIN_DATA_NAME) as data:
+    train = data["train"]
+    train_labels = data["train_labels"]
+train = train.astype(np.float32)
+train_labels = train_labels.astype(np.float32)
+
+# create KNN obj
+knn = cv2.ml.KNearest_create()
+knn.train(train,cv2.ml.ROW_SAMPLE,train_labels)
+
+image = take_photo()
+img = cv2.imread(image)
+imshow(img)
+imgGray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+imshow(imgGray)
+_threshold , imgBin1 = cv2.threshold(imgGray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+t = _threshold - 32
+_threshold , imgBin = cv2.threshold(imgGray, t, 255, cv2.THRESH_BINARY_INV)
+imshow(imgBin)
+
+def imgSqua(img):
+    (row,col) = img.shape
+    m = max(row,col)
+    new_matrix = np.zeros((m,m), dtype = np.uint8)
+    row_start = (m-row)//2
+    col_start = (m-col)//2
+    new_matrix[row_start:row_start+row, col_start:col_start+col] = img
+    return new_matrix
+
+
+imgCol = my.image_split_column_new(imgBin)
+imgMonos = []
+for col in range(0,len(imgCol)):
+    imgMono = my.image_split_row_new(imgCol[col])
+    print(f"{(col)}:")
+    imshow(imgMono[0])
+    imshow(imgSqua(imgMono[0]))
+    imgMonos.append(imgSqua(imgMono[0]))
+    
+resizeSize = (20 , 20)
+reShapeSize = (1, 400)
+# resize and reshape the image with single number
+# then recognize the number with knn.findNearest(imgReshape,k=?)
+numberList = []
+for i in range(0,len(imgMonos)):
+    imgResize = cv2.resize(imgMonos[i], resizeSize,interpolation=cv2.INTER_AREA)
+    _,imgResize = cv2.threshold(imgResize,0,255,cv2.THRESH_BINARY)
+    imgResize = cv2.blur(imgResize, (2,2))
+    _,imgResize = cv2.threshold(imgResize,127,255,cv2.THRESH_BINARY)
+    imshow(imgResize)
+    imgReshape = imgResize.reshape(reShapeSize).astype(np.float32)
+    
+    _,result,_,_ = knn.findNearest(imgReshape,k=3)
+    numberList.append(int(result))
+print("The "+str(1)+"th row has:" + str(numberList))
+show_list = []
+show_list.append(numberList)
+# do the image splite and reshape
+# then recognize the number with knn.findNearest(imgReshape,k=?)
+led_display(show_list)
+````
+
+The pictures of the circuit are presented below:
+
+![](img/IMG_4266.JPG)
+
+![](img/IMG_4267.JPG)
+
+![](img/IMG_4265.JPG)
+
+The scene of demonstration:
+
+![](img/IMG_4263.JPG)
 
 
 
