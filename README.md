@@ -181,15 +181,15 @@ To set and manipulate the GPIO ports through python, we have to ***import the PR
 
 The picture of more information related to the GPIO is presented below. 
 
-![](img\GPIO.png)
+![](img/GPIO.png)
 
 After knowing what to do with the GPIO ports, we also have to learn more knowledge of the LED digital tube and the switch.  As for the switch, we have to know the inner structure of this device. The code of operation and the inner circuit is illustrated below.
 
-![](img\camera.png)
+![](img/camera.png)
 
 As for the digital tube, it's more complex in comparison. After knowing the control relationship between the LED and the port, we have to establish combinations of LEDs to represent: 
 
-<img src="img\digital tube.png" style="zoom:60%;" />
+<img src="img/digital tube.png" style="zoom:60%;" />
 
 ### Presentation & Result of the Project
 
