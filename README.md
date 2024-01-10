@@ -24,6 +24,8 @@ To realize this, we have to assign an IP to the usb interface in order to connec
 
 Through these operations, we can manipulate the Raspberry Pi through the remote desktop on our own computer. 
 
+<img src="img/VNC.png" style="zoom:20%;" />
+
 #### Part 2: The Establishment of the Training Set
 
 KNN algorithm requires training data. But before that, we must know how to process our pictures. The photos taken is colorful, but this is not what we want. First, we have to change our colorful pictures into the gray one. Picture is actually a matrix, containing the RGB information of every pixel. But we don't want the RGB colors, all we want is to use a gray level value to represent the pixel. Using the algorithm in the library OpenCV, it is easy to realize this:
@@ -298,5 +300,3 @@ def led_display(numList:list)->None:
 - **Solution:** Unfortunately, despite our best efforts, including disabling the VNCServer, the problem persisted. Consequently, we had to rely on blind navigation during the code testing phase.
 
 ### Thoughts and Inspirations
-
-###### 
