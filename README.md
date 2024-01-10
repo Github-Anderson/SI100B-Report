@@ -89,6 +89,8 @@ First we know that the white part of a gray scale picture is actually determined
 
 Through this process, we change the gray scale picture into a ***binary*** one.
 
+<img src="img/binary.png" style="zoom:15%;" />
+
 OK. Now we have a matrix, whose elements can only be 0 or 255. What to do next is quite clear. We have to scan the matrix from left to the right, detecting where the 0 changes into 255 (type 1) and where the 255 change into 0 (type 2). Not all changes of this kind should be recorded. When the change of type 1 is detected, what we seek for should be change of type 2. The area between the column of the index recorded in pair is in fact the number! Record the index of the column required, and this will help us split the matrix vertically. As for the rows, we do the similar things like that, so as to correctly split the matrix horizontally. First split the whole matrix vertically, then split every unit horizontally, and we will get the number matrix we want!
 
 Remark that to further increase the accuracy, we make some adjustment to increase the width of  the black margin. All these functions are written in the file ***'my_function.py'*** .
