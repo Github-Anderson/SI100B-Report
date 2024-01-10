@@ -48,12 +48,12 @@ _,imgResize = cv2.threshold(imgResize,127,255,cv2.THRESH_BINARY)
 #### Problem 02: Camera initialization
 
 - **Description:** When attempting to initialize the newly installed camera on the Raspberry Pi, it consistently presents an ***'Failed to enable connection: Out of resources'*** error. Despite trying several solutions, the issue persists.
-- **Solution:** 
+- **Solution:** We eventually diagnosed the issue by running code `vcgencmd get_camera` in the terminal, which revealed `supported=1 detected=0`, means that the problem stemmed from poor camera connections, preventing the initialization process. Once we powered down and reconnected the camera, the issue was resolved.
 
 #### Problem 03: Camera preview
 
 - **Description:** After writing the `camera.start_preview()` code, the Raspberry Pi, which should have initiated the camera preview, remained unresponsive without any error messages. Nevertheless, it executed the subsequent code without issues.
-- **Solution:** 
+- **Solution:** Unfortunately, despite our best efforts, including disabling the VNCServer, the problem persisted. Consequently, we had to rely on blind navigation during the code testing phase.
 
 ### Thoughts and Inspirations
 
