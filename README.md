@@ -125,8 +125,6 @@ def image_split_column(img:np.ndarray)->list:
     ret = imgList
     return ret
 
-
-
 def image_split_row(img:np.ndarray)->list:
     # find out the number of rows in the original image
     # create a list to record the number of elements with a value of 255 in each row
@@ -223,8 +221,6 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
 
 ````python
 def led_display(numList:list)->None:
-    ### write your codes here ###
-    #############################
     # step 1:
     # Clarify the relationship between led pins and GPIO pins
     # Set the GPIO pins to GPIO.OUT mode and give them the right output
@@ -279,8 +275,6 @@ Note that the returned result of this function is the path where the picture is 
 
 ````python
 def take_photo()->str:
-    ### write your codes here ###
-    #############################
     # step 1: 
     #set a GPIO as an input channel for detecting
     GPIO.setmode(GPIO.BOARD)
@@ -351,9 +345,7 @@ def image_split_column(img:np.ndarray)->list:
     # initialize the variables
     flag = 0
     startList = []
-    endList = []        
-    ### write your codes here ###
-    #############################
+    endList = []
     # step1:
     # count the number of elements with a value of 255 in each column and record it in columnHist
     # record the location where the the number of 255 changes in startList and endList
@@ -379,9 +371,7 @@ def image_split_row(img:np.ndarray)->list:
     # initialize the variables
     flag = 0
     startList = []
-    endList = []         
-    ### write your codes here ###
-    #############################
+    endList = []
     # step1:
     # count the number of elements with a value of 255 in each row and record it in rowHist
     # record the location where the the number of 255 changes in startList and endList
@@ -400,8 +390,6 @@ def image_split_row(img:np.ndarray)->list:
     ret = imgList
     return ret
 def led_display(numList:list)->None:
-    ### write your codes here ###
-    #############################
     # step 1:
     # Clarify the relationship between led pins and GPIO pins
     # Set the GPIO pins to GPIO.OUT mode and give them the right output   
@@ -447,8 +435,6 @@ def led_display(numList:list)->None:
     ret = None
     return ret
 def take_photo()->str:
-    ### write your codes here ###
-    #############################
     # step 1: 
     #set a GPIO as an input channel for detecting
     GPIO.setmode(GPIO.BOARD)
@@ -590,7 +576,7 @@ The binary image is shown below:
 
 The recognition result is shown below:
 
-<img src="img/output3.png" style="zoom: 50%;" />
+<img src="img/output3.png" style="zoom: 40%;" />
 
 So far, we have finished the whole project. Well Done!
 
