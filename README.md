@@ -2,15 +2,13 @@
 
 ## Team members and Division of Work
 
-### Team members
-
 - **Zhangzhi Xiong** (熊章智)
 
   Coding; Adjusting Parameters (Threshold and Model Related); Building Circuit
 
 - **Tianni Yang** (杨天倪)
 
-  Adjusting Parameters (Accuracy Related); Buiding Circuit
+  Adjusting Parameters (Accuracy Related); Building Circuit
 
 - **Yixuan Chen** (陈逸轩)
 
@@ -19,8 +17,6 @@
 - **Joint Work**
 
   Debugging; Recording ; Writing Report
-
-### Division of Work
 
 ## Text
 
@@ -201,9 +197,9 @@ def imgSqua(img):
 
 As for the threshold, there is an important point: we have to avoid ***'noise white dots'*** (we create this term ourselves). If the threshold isn't set properly, some noise dots will turn white, bringing huge troubles to the segmentation. The effect is shown below with an example.
 
-![](img/e1.png)
+<img src="img/e1.png" style="zoom:15%;" />
 
-So we have to pick the right threshold value. But the question is how? A solid value can't just work fine, for the reason that when it comes to the practical use, the pictures can be taken under different light environment. So we have to use a function to calculate the "appropriate" value of the threshold. Later, we found that this value is not actually the best. Normally, we have do an additional subtraction, like minus 25 or so. 
+So we have to pick the right threshold value. But the question is how? A solid value can't just work fine, for the reason that when it comes to the practical use, the pictures can be taken under different light environment. So we have to use a function to calculate the "appropriate" value of the threshold. Later, we found that this value is not actually the best. Normally, we have do an additional subtraction, like minus 25 or so, to reduce the noise white dots.
 
 ````python
 _threshold , imgBin1 = cv2.threshold(imgGray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
@@ -596,6 +592,10 @@ The recognition result is shown below:
 
 So far, we have finished the whole project. Well Done!
 
+
+
+
+
 ### Problems Encountered and Solutions
 
 #### Problem 1: Recognition rate
@@ -612,7 +612,7 @@ So far, we have finished the whole project. Well Done!
 
   This process can be shown as follows:
   
-  <img src="img/Blur.png" style="zoom:15%;" />
+  <img src="img/Blur.png" style="zoom:12%;" />
   
   In addition, we make a little adjustment to the training data as well. Mentioned that the left half of the picture used for training is actually ***a little bit too illegible***, we only choose the right half as the training samples for ***avoiding the left half samples contamination the training model***. This adjustment works well, with the increase of roughly 20% in accuracy.  That's why the training model used in the ***ultimate_code.ipynb*** is ***"OPENCV_data_Beta.npz"***.
 
@@ -650,4 +650,6 @@ Thank you for your reading!
 
 Best regards,
 
-ZhangZhi Xiong, TianNi Yang, YiXuan Chen
+- @ZhangZhi Xiong xiongzhzh2023@shanghaitech.edu.cn
+- @TianNi Yang yangtn2023@shanghaitech.edu.cn
+- @YiXuan Chen chenyx2023@shanghaitech.edu.cn
