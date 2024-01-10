@@ -310,6 +310,14 @@ def take_photo()->str:
     return ret
 ````
 
+Finally, so as to build the circuit correctly, we have know how the bread board works. The illustration is presented below:
+
+![](img/bread board.png)
+
+We can see the GND line and the VCC line located on the top and the bottom (the real bread board used by us is a little different to the one in the picture). Each vertical line of fine holes is a current path. If we want the current to flow across each vertical line, we have to use a device to do the connection, like a switch or a resistor. 
+
+Note that resistors in the circuit are extremely important! They can protected the board from being jeopardized due to the high electric current. 
+
 ### Presentation & Result of the Project
 
 Finally, we have all the code and the circuit. Time for demonstration!
@@ -470,7 +478,7 @@ def take_photo()->str:
     return ret
 ````
 
-The ***ultimate_demonstration_code.ipynb*** is presented below:
+The ***ultimate_code.ipynb*** is presented below:
 
 ````python
 %load_ext autoreload
@@ -566,7 +574,25 @@ The scene of demonstration:
 
 ![](img/IMG_4263.JPG)
 
+Finally, we completed our mission successfully, with the ***accuracy of 80%***, i.e, eight correct out of ten. Though during the demonstration we have to make one adjustment to the ***threshold*** due to the ***noise white dot***, in a whole, the demonstration was a total success. The accuracy was 80% and the digital tube presented the number correctly. We will show more detail in the following pictures:
 
+The picture taken is shown below:
+
+![](img/input.png) 
+
+The gray scale image is shown below:
+
+![](img/output1.png)
+
+The binary image is shown below:
+
+![](img/output2.png)
+
+The recognition result is shown below:
+
+![](img/output3.png)
+
+So far, we have finished the whole project. Well Done!
 
 ### Problems Encountered and Solutions
 
@@ -585,6 +611,8 @@ The scene of demonstration:
   This process can be shown as follows:
   
   <img src="img/Blur.png" style="zoom:15%;" />
+  
+  In addition, we make a little adjustment to the training data as well. Mentioned that the left half of the picture used for training is actually ***a little bit too illegible***, we only choose the right half as the training samples for ***avoiding the left half samples jeopardizing the training model***. This adjustment works well, with the increase of roughly 20% in accuracy.  That's why the training model used in the ***ultimate_code.ipynb*** is ***"OPENCV_data_Beta.npz"***.
 
 #### Problem 2: Camera initialization
 
