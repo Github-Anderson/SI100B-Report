@@ -105,9 +105,7 @@ def image_split_column(img:np.ndarray)->list:
     # initialize the variables
     flag = 0
     startList = []
-    endList = []   
-    ### write your codes here ###
-    #############################
+    endList = []
     # step1:
     # count the number of elements with a value of 255 in each column and record it in columnHist
     # record the location where the the number of 255 changes in startList and endList
@@ -137,9 +135,7 @@ def image_split_row(img:np.ndarray)->list:
     # initialize the variables
     flag = 0
     startList = []
-    endList = []         
-    ### write your codes here ###
-    #############################
+    endList = []
     # step1:
     # count the number of elements with a value of 255 in each row and record it in rowHist
     # record the location where the the number of 255 changes in startList and endList
