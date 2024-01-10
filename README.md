@@ -612,7 +612,7 @@ So far, we have finished the whole project. Well Done!
   
   <img src="img/Blur.png" style="zoom:15%;" />
   
-  In addition, we make a little adjustment to the training data as well. Mentioned that the left half of the picture used for training is actually ***a little bit too illegible***, we only choose the right half as the training samples for ***avoiding the left half samples jeopardizing the training model***. This adjustment works well, with the increase of roughly 20% in accuracy.  That's why the training model used in the ***ultimate_code.ipynb*** is ***"OPENCV_data_Beta.npz"***.
+  In addition, we make a little adjustment to the training data as well. Mentioned that the left half of the picture used for training is actually ***a little bit too illegible***, we only choose the right half as the training samples for ***avoiding the left half samples contamination the training model***. This adjustment works well, with the increase of roughly 20% in accuracy.  That's why the training model used in the ***ultimate_code.ipynb*** is ***"OPENCV_data_Beta.npz"***.
 
 #### Problem 2: Camera initialization
 
@@ -626,7 +626,17 @@ So far, we have finished the whole project. Well Done!
 
 ### Thoughts and Inspirations
 
+During the program, we have gained a lot of thoughts and inspirations. Here we are going to summarize them, make some conclusions, sum up some experience and significance.
 
+First of all, we learned how to deal with problems. That's a quite important skill, for the reason that in the future it is inevitable for us to encounter countless bugs and errors. But the key is: How can we find out the solutions to the bugs? We can ***surf the Internet***, we can ask ***ChatGPT*** for help, we can search for information on the ***online forum***, we can search for the solutions through various ways! At the same time, we have to be alert about whether the information provided on the Internet is ***valid or not***. What's more, it is also not a bad way to ***view what you've done***, like your code, again and again to ***debug***, or just to simply ***abort what you've finished and start from the beginning***. The key in common is ***patience***.
+
+Secondly, we have a deeper understanding of the connection ***between the hardware and the program***. As a group consists of three students majoring in CS, it is not a big challenge in the coding part. But in the ***circuit and the Raspberry Pi Board part***, stagnant is frequent and sometimes it takes a long time for us to understand how this function is realized or how this circuit works. Especially when it comes to the ***GPIO*** part, we were deeply amazed by the interaction between the code and the hardware. The moment that we finally ignite the digital tube, we were much delighted, clapping hands together. Computer Science not just deals with the algorithm or programs, it also has to do with the devices, the vessels of the program. 
+
+What's more, we have a deeper understanding of the Machine Learning (I don't know if this classification is appropriate or not, but this thought is intuitive). The procedure of transforming the colorful picture into a ***binary picture***, the ***segmentation of the matrix***, and the ***reshape of the sample matrices,*** all these operations broadened our horizon and refresh our understanding of the ***Image Processing***. If we were asked: how to realize hand-written number recognition, we may have no idea. But after the project, we are quite confident to introduce the fundamental rationale of this project to others! See? This ***project's principles*** are in fact not that complex to understand!  Being aware of that, we can even generate our own idea, like the theory that the bad samples can contaminate the training model and the black margin matters a lot ( yes, we were aware of this point before teacher pointed that out in the class! ).
+
+At last, we learn how to ***better cooperate***. Team work is rather important. The power of individual is limited, but the power of a team will be infinite if the team is organized in order. Besides, everyone's advantages and shortcomings are different, which makes it possible to the team members to learn from other's strong points to offset one's weakness, so as to further form a more ***cohesive and resilient team***. In the future, team work is inevitable in the field of scientific research, the skill to better collaborate with other teammates or organize the team in a good order will be rather beneficial. This unique experience won't be forgotten by each member of our team! 
+
+In a nut shell, we have learned so much from the project, haven't we? Sum them up and absorb the wisdom, and we will gain more experience and make more steady steps on the scientific road we have embarked on. 
 
 ### Credits
 
