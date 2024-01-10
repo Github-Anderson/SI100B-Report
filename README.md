@@ -79,7 +79,7 @@ np.savez(fileName, train = train, train_labels = train_labels)
 
 Pay special attention to the grammar when splitting the picture.
 
-#### Detecting the Numbers
+#### Part 3: Detecting the Numbers
 
 At first, it is abstract for us to think how can we detect and extract the number out of the paper. But after knowing how and why, we will find it quite simple.
 
@@ -163,7 +163,7 @@ def image_split_row(img:np.ndarray)->list:
 
 ### Problems Encountered and Solutions
 
-#### Problem 01: Recognition rate
+#### Problem 1: Recognition rate
 
 - **Description:** The initial challenge we faced was improving the recognition rate. During the first few attempts, we observed a low recognition rate of approximately **30~40%**, which fell far short of our target of around 90%.
 
@@ -176,13 +176,15 @@ def image_split_row(img:np.ndarray)->list:
   ```
 
   This piece of code is used to make the numbers in the image bolder for more accurate recognition. 
+  
+  ![](img/Blur.png "The process of blur filters")
 
-#### Problem 02: Camera initialization
+#### Problem 2: Camera initialization
 
 - **Description:** When attempting to initialize the newly installed camera on the Raspberry Pi, it consistently presents an ***'Failed to enable connection: Out of resources'*** error. Despite trying several solutions, the issue persists.
 - **Solution:** We eventually diagnosed the issue by running code `vcgencmd get_camera` in the terminal, which revealed `supported=1 detected=0`, means that the problem stemmed from poor camera connections, preventing the initialization process. Once we powered down and reconnected the camera, the issue was resolved.
 
-#### Problem 03: Camera preview
+#### Problem 3: Camera preview
 
 - **Description:** After writing the `camera.start_preview()` code, the Raspberry Pi, which should have initiated the camera preview, remained unresponsive without any error messages. Nevertheless, it executed the subsequent code without issues.
 - **Solution:** Unfortunately, despite our best efforts, including disabling the VNCServer, the problem persisted. Consequently, we had to rely on blind navigation during the code testing phase.
