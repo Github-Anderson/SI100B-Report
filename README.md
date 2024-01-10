@@ -34,15 +34,25 @@ To realize this, we have to assign an IP to the usb interface in order to connec
 
 #### Problem 01: Recognition rate
 
-The first problem we've encountered is how to raise the recognition rate. In the first few times, we've found the recognition rate is too low, around **30~40%**, since the expectation is about 90%. 
+- **Description:** The initial challenge we faced was improving the recognition rate. During the first few attempts, we observed a low recognition rate of approximately **30~40%**, which fell far short of our target of around 90%.
+
+- **Solution:** We used several methods, including cropping to retain suitable margins, adjusting binary thresholds, and applying blur filters, which are shown in the following code:
+
+```python
+# Applying blur filters
+imgResize = cv2.blur(imgResize, (2,2))
+_,imgResize = cv2.threshold(imgResize,127,255,cv2.THRESH_BINARY)
+```
 
 #### Problem 02: Camera initialization
 
-When attempting to initialize the newly installed camera on the Raspberry Pi, it consistently presents an ***'Failed to enable connection: Out of resources'*** error. Despite trying several solutions, the issue persists.
+- **Description:** When attempting to initialize the newly installed camera on the Raspberry Pi, it consistently presents an ***'Failed to enable connection: Out of resources'*** error. Despite trying several solutions, the issue persists.
+- **Solution:** 
 
 #### Problem 03: Camera preview
 
-After writing the `camera.start_preview()` code, the Raspberry Pi, which should have initiated the camera preview, remained unresponsive without any error messages. Nevertheless, it executed the subsequent code without issues.
+- **Description:** After writing the `camera.start_preview()` code, the Raspberry Pi, which should have initiated the camera preview, remained unresponsive without any error messages. Nevertheless, it executed the subsequent code without issues.
+- **Solution:** 
 
 ### Thoughts and Inspirations
 
