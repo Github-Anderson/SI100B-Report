@@ -189,7 +189,19 @@ def imgSqua(img):
     return new_matrix
 ````
 
-As for the threshold, there 
+As for the threshold, there is an important point: we have to avoid ***'noise white dots'*** (we create this term ourselves). If the threshold isn't set properly, some noise dots will turn white, bringing huge troubles to the segmentation. The effect is shown below with an example.
+
+![](img/e1.png)
+
+So we have to pick the right threshold value. But the question is how? A solid value can't just work fine, for the reason that when it comes to the practical use, the pictures can be taken under different light environment. So we have to use a function to calculate the "appropriate" value of the threshold. Later, we found that this value is not actually the best. Normally, we have do an additional subtraction, like minus 25 or so. 
+
+````python
+_threshold , imgBin1 = cv2.threshold(imgGray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+t = _threshold - 32
+_threshold , imgBin = cv2.threshold(imgGray, t, 255, cv2.THRESH_BINARY_INV)
+````
+
+As for the 'k' value, after various experiment, we find that 3 is the most suitable one. 
 
 #### Part 6: Building the Circuit
 
