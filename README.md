@@ -285,9 +285,7 @@ def led_display(numList:list)->None:
 
   This piece of code is used to make the numbers in the image bolder for more accurate recognition. 
   
-  ![](img/Blur.png "The process of blur filters")
-
-
+  <img src="img/Blur.png" title="The process of blur filters" style="zoom:15%;" />
 
 #### Problem 2: Camera initialization
 
