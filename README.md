@@ -275,7 +275,7 @@ def led_display(numList:list)->None:
 
 - **Description:** The initial challenge we faced was improving the recognition rate. During the first few attempts, we observed a low recognition rate of approximately **30~40%**, which fell far short of our target of around 90%.
 
-- **Solution:** We used several methods, including cropping to retain suitable margins, adjusting binary thresholds, and applying blur filters, which are shown in the following code:
+- **Solution:** Notice that the numbers in given images are too thin to be reshaped, it leaves us to process them to match the train set. We used several methods, including cropping to retain suitable margins, adjusting binary thresholds, and applying blur filters, which are shown in the following code:
 
   ```python
   # Applying blur filters
@@ -283,9 +283,9 @@ def led_display(numList:list)->None:
   _,imgResize = cv2.threshold(imgResize,127,255,cv2.THRESH_BINARY)
   ```
 
-  This piece of code is used to make the numbers in the image bolder for more accurate recognition. 
+  This process can be shown as follows:
   
-  <img src="img/Blur.png" title="The process of blur filters" style="zoom:15%;" />
+  <img src="img/Blur.png" style="zoom:15%;" />
 
 #### Problem 2: Camera initialization
 
@@ -298,3 +298,11 @@ def led_display(numList:list)->None:
 - **Solution:** Unfortunately, despite our best efforts, including disabling the VNCServer, the problem persisted. Consequently, we had to rely on blind navigation during the code testing phase.
 
 ### Thoughts and Inspirations
+
+
+
+### Credits
+
+
+
+Repository on [Github](https://github.com/Github-Anderson/SI100B-Report)
