@@ -26,7 +26,7 @@ To realize this, we have to assign an IP to the usb interface in order to connec
 
 Through these operations, we can manipulate the Raspberry Pi through the remote desktop on our own computer. 
 
-<img src="img/VNC.png" style="zoom:30%;" />
+<img src="img/VNC.png" style="zoom:20%;" />
 
 #### Part 2: The Establishment of the Training Set
 
@@ -213,7 +213,7 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
 
   This process can be shown as follows:
   
-  <img src="img/Blur.png" style="zoom:20%;" />
+  <img src="img/Blur.png" style="zoom:15%;" />
 
 #### Problem 2: Camera initialization
 
