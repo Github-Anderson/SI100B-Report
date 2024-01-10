@@ -20,7 +20,9 @@ The Project "hand-written number recognition" is  realized through hardwares and
 
 First of all, the most important thing is to understand how to operate the Raspberry Pi. We know that the Raspberry is a little computer with no screen or input device. As for the first stage, we will build a ***Remote Desktop*** through ***VNC***, in order to make it easy for us to write in programs and run our codes through our own computer. This may seem to be a little bit weird, but in fact, our computer only plays the role of displayer, and the running of codes is actually processed in the Raspberry Pi.  
 
-To realize this, we have to assign an IP to the usb interface in order to connect the Raspberry with the computer, since that this operation puts two devices into one LAN.   After that, all we have to do is to open the VNC app and initiate the connection. Through these operations, we can manipulate the Raspberry Pi through the remote desktop on our own computer. 
+To realize this, we have to assign an IP to the usb interface in order to connect the Raspberry with the computer, since that this operation puts two devices into one LAN. After that, all we have to do is to open the VNC app and initiate the connection.
+
+Through these operations, we can manipulate the Raspberry Pi through the remote desktop on our own computer. 
 
 #### Part 2: The Establishment of the Training Set
 
