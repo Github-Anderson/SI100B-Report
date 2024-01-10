@@ -26,7 +26,7 @@ To realize this, we have to assign an IP to the usb interface in order to connec
 
 Through these operations, we can manipulate the Raspberry Pi through the remote desktop on our own computer. 
 
-<img src="img/VNC.png" title="VNC" style="zoom:30%;" />
+<img src="img/VNC.png" style="zoom:30%;" />
 
 #### Part 2: The Establishment of the Training Set
 
@@ -183,15 +183,15 @@ To set and manipulate the GPIO ports through python, we have to ***import the PR
 
 The picture of more information related to the GPIO is presented below. 
 
-![](img/GPIO.png "Raspberry Pi")
+![](img/GPIO.png)
 
 After knowing what to do with the GPIO ports, we also have to learn more knowledge of the LED digital tube and the switch.  As for the switch, we have to know the inner structure of this device. The code of operation and the inner circuit is illustrated below.
 
-![](img/camera.png "Camera")
+![](img/camera.png)
 
 As for the digital tube, it's more complex in comparison. After knowing the control relationship between the LED and the port, we have to establish combinations of LEDs to represent: 
 
-<img src="img/digital tube.png" title="LED" style="zoom:60%;" />
+<img src="img/digital tube.png" style="zoom:60%;" />
 
 ### Presentation & Result of the Project
 
@@ -213,7 +213,7 @@ As for the digital tube, it's more complex in comparison. After knowing the cont
 
   This process can be shown as follows:
   
-  <img src="img/Blur.png" title="The process of blur filters" style="zoom:20%;" />
+  <img src="img/Blur.png" style="zoom:20%;" />
 
 #### Problem 2: Camera initialization
 
