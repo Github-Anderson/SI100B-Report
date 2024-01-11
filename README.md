@@ -32,6 +32,8 @@ To realize this, we have to assign an IP to the usb interface in order to connec
 
 Through these operations, we can manipulate the Raspberry Pi through the remote desktop on our own computer. 
 
+Note that the Raspberry Pi Board and its camera is rather fragile. When assembling devices, we have to make sure the power is off. What's more, only after shutting down the board completely can we power the board off. If not so, it will do harm to the transmission of data.
+
 <img src="img/VNC.png" style="zoom:20%;" />
 
 #### Part 2: The Establishment of the Training Set
@@ -168,7 +170,7 @@ We have known the procedure to secure the numbers in a single line. But what abo
 ````python
 rows = image_split_row(imgBin)
 for p in range(len(rows)):
-     imgCol = image_split_column(rows[p])
+    imgCol = image_split_column(rows[p])
     print(f'The followings are the {p+1}th row')
     imshow(rows[p])
     imgMonos = []
@@ -284,6 +286,8 @@ def led_display(numList:list)->None:
 Besides these two devices, we add an additional LED in combination with the switch and the camera to inform us the moment we take photos. The code ***'take_photo()'*** of taking photos, including the function of switch and LED illustration, is presented below:
 
 Note that the returned result of this function is the path where the picture is saved. 
+
+
 
 ````python
 def take_photo()->str:
@@ -619,7 +623,7 @@ So far, we have finished the whole project. Well Done!
 #### Problem 2: Camera initialization
 
 - **Description:** When attempting to initialize the newly installed camera on the Raspberry Pi, it consistently presents an ***'Failed to enable connection: Out of resources'*** error. Despite trying several solutions, the issue persists.
-- **Solution:** We eventually diagnosed the issue by running code `vcgencmd get_camera` in the terminal, which revealed `supported=1 detected=0`, means that the problem stemmed from poor camera connections, preventing the initialization process. Once we powered down and reconnected the camera, the issue was resolved.
+- **Solution:** We eventually diagnosed the issue by running code `vcgencmd get_camera` in the terminal, which revealed `supported=1 detected=0`, means that the problem stemmed from ***poor camera connections***, preventing the initialization process. Once we powered down and reconnected the camera, the issue was resolved.
 
 #### Problem 3: Camera preview
 
@@ -638,7 +642,7 @@ What's more, we have a deeper understanding of the Machine Learning (I don't kno
 
 At last, we learn how to ***better cooperate***. Team work is rather important. The power of individual is limited, but the power of a team will be infinite if the team is organized in order. Besides, everyone's advantages and shortcomings are different, which makes it possible to the team members to learn from other's strong points to offset one's weakness, so as to further form a more ***cohesive and resilient team***. In the future, team work is inevitable in the field of scientific research, the skill to better collaborate with other teammates or organize the team in a good order will be rather beneficial. This unique experience won't be forgotten by each member of our team! 
 
-Finally, always try to learn new things, and learn to learn new things fast and clear. During the project, to fix the problem encountered, we have to learn lots of new knowledge and apply these knowledge to practical use. For example, the structure and working principle of the Raspberry Pi is highly related to ***Computer System and Structure***, the circuit is related to the knowledge and the usage of the bread board and the electrical devices, even this pdf document is edited in ***Markdown*** which means that we have to learn the grammar of the markdown fast. But the joy of exploration is exactly the process of meeting new stuff and learn them. Thus, it is quite a serious point that whether we can grasp the essence of the knowledge, make some connections and put them into application or not. 
+Finally, always try to ***learn new things***, and learn to learn new things fast and clear. During the project, to fix the problem encountered, we have to learn lots of new knowledge and apply these knowledge to practical use. For example, the structure and working principle of the Raspberry Pi is highly related to ***Computer System and Structure***, the circuit is related to the knowledge and the usage of the bread board and the electrical devices, the ***command line*** used in the terminal which is highly related to the ***Linux System***, even this pdf document is edited in ***Markdown*** which means that we have to learn the grammar of the markdown fast. But the joy of exploration is exactly the process of meeting new stuff and learn them. Thus, it is quite a serious point that whether we can grasp the essence of the knowledge, make some connections and put them into application or not. 
 
 In a nut shell, we have learned so much from the project, haven't we? Sum them up and absorb the wisdom, and we will gain more experience and make more steady steps on the scientific road we have embarked on. 
 
