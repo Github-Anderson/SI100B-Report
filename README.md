@@ -285,9 +285,7 @@ def led_display(numList:list)->None:
 
 Besides these two devices, we add an additional LED in combination with the switch and the camera to inform us the moment we take photos. The code ***'take_photo()'*** of taking photos, including the function of switch and LED illustration, is presented below:
 
-Note that the returned result of this function is the path where the picture is saved. 
-
-
+Note that the returned result of this function is the path where the picture is saved.
 
 ````python
 def take_photo()->str:
@@ -642,7 +640,7 @@ What's more, we have a deeper understanding of the Machine Learning (I don't kno
 
 At last, we learn how to ***better cooperate***. Team work is rather important. The power of individual is limited, but the power of a team will be infinite if the team is organized in order. Besides, everyone's advantages and shortcomings are different, which makes it possible to the team members to learn from other's strong points to offset one's weakness, so as to further form a more ***cohesive and resilient team***. In the future, team work is inevitable in the field of scientific research, the skill to better collaborate with other teammates or organize the team in a good order will be rather beneficial. This unique experience won't be forgotten by each member of our team! 
 
-Finally, always try to ***learn new things***, and learn to learn new things fast and clear. During the project, to fix the problem encountered, we have to learn lots of new knowledge and apply these knowledge to practical use. For example, the structure and working principle of the Raspberry Pi is highly related to ***Computer System and Structure***, the circuit is related to the knowledge and the usage of the bread board and the electrical devices, the ***command line*** used in the terminal which is highly related to the ***Linux System***, even this pdf document is edited in ***Markdown*** which means that we have to learn the grammar of the markdown fast. But the joy of exploration is exactly the process of meeting new stuff and learn them. Thus, it is quite a serious point that whether we can grasp the essence of the knowledge, make some connections and put them into application or not. 
+Finally, always try to ***learn new things***, and learn to learn new things fast and clear. During the project, to fix the problem encountered, we have to learn lots of new knowledge and apply these knowledge to practical use. For example, the structure and working principle of the Raspberry Pi is highly related to ***Computer System and Structure***, the circuit is related to the knowledge and the usage of the bread board and the electrical devices, even this pdf document is edited in ***Markdown*** which means that we have to learn the grammar of the markdown fast. But the joy of exploration is exactly the process of meeting new stuff and learn them. Thus, it is quite a serious point that whether we can grasp the essence of the knowledge, make some connections and put them into application or not. 
 
 In a nut shell, we have learned so much from the project, haven't we? Sum them up and absorb the wisdom, and we will gain more experience and make more steady steps on the scientific road we have embarked on. 
 
